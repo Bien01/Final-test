@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Go Food</title>
+    <link rel="stylesheet" href="./style.css" />
+</head>
+<body>
+    <div class="hold">
+        <h1 class="header">Hãy đặt đồ ăn nào</h1>
+   <div class="form-section">
+      <h2>Menu</h2>
+      <div class="filter-sort">
+        <input type="text" id="search-input" placeholder="Tìm món ăn..." onkeyup="filterMenu()">
+        <select id="category-filter" onchange="filterMenu()">
+          <option value="all">Tất cả</option>
+          <option value="main">Món Chính</option>
+          <option value="banhmi">Bánh Mì</option>
+          <option value="snack">Đồ Ăn Vặt</option>
+          <option value="drink">Đồ Uống</option>
+          <option value="dessert">Món Tráng Miệng</option>
+        </select>
+        <select id="sort-order" onchange="sortMenu()">
+          <option value="default">Mặc định</option>
+          <option value="price-asc">Giá tăng dần</option>
+          <option value="price-desc">Giá giảm dần</option>
+        </select>
+      </div>
+      <div class="menu-item" data-category="main" data-price="50000">
+        <img src="img/phở tái.jpg" alt="Phở Tái" class="menu-image">
+        <span>Phở Tái - 50.000 VNĐ</span>
+        <input type="number" min="0" value="0" onchange="updateTotal()">
+      </div>
+      <div class="menu-item" data-category="main" data-price="55000">
+        <img src="img/phở tái nạm.jpg" alt="Phở Tái Nạm" class="menu-image">
+        <span>Phở Tái Nạm - 55.000 VNĐ</span>
+        <input type="number" min="0" value="0" onchange="updateTotal()">
+      </div>
+      <div class="menu-item" data-category="main" data-price="55000">
+        <img src="img/phở gân.jpg" alt="Phở Gân" class="menu-image">
+        <span>Phở Gân - 55.000 VNĐ</span>
+        <input type="number" min="0" value="0" onchange="updateTotal()">
+      </div>
+      <div class="menu-item" data-category="main" data-price="65000">
+        <img src="img/tô đặc biệt.jpg" alt="Phở Đặc Biệt" class="menu-image">
+        <span>Phở Đặc Biệt - 65.000 VNĐ</span>
+        <input type="number" min="0" value="0" onchange="updateTotal()">
+      </div>
+      <div class="menu-item" data-category="main" data-price="40000">
+        <img src="img/cơm tấm sườn.jpg" alt="Cơm Tấm Sườn" class="menu-image">
+        <span>Cơm Tấm Sườn - 40.000 VNĐ</span>
+        <input type="number" min="0" value="0" onchange="updateTotal()">
+      </div>
+      <div class="menu-item" data-category="main" data-price="45000">
+        <img src="img/cơm tấm sườn trứng.jpg" alt="Cơm Tấm Thêm Trứng" class="menu-image">
+        <span>Cơm Tấm Thêm Trứng - 45.000 VNĐ</span>
+        <input type="number" min="0" value="0" onchange="updateTotal()">
+      </div>
+      <div class="menu-item" data-category="main" data-price="45000">
+        <img src="img/cơm tấm sườn.jpg" alt="Cơm Tấm Thêm Chả" class="menu-image">
+        <span>Cơm Tấm Thêm Chả - 45.000 VNĐ</span>
+        <input type="number" min="0" value="0" onchange="updateTotal()">
+      </div>
+      <div class="menu-item" data-category="main" data-price="55000">
+        <img src="img/cơm tấm đầy đủ.jpg" alt="Cơm Tấm Đầy Đủ" class="menu-image">
+        <span>Cơm Tấm Đầy Đủ - 55.000 VNĐ</span>
+        <input type="number" min="0" value="0" onchange="updateTotal()">
+      </div>
+      <div class="menu-item" data-category="main" data-price="45000">
+        <img src="img/bún chả.jpg" alt="Bún Chả " class="menu-image">
+        <span>Bún Chả  - 45.000 VNĐ</span>
+        <input type="number" min="0" value="0" onchange="updateTotal()">
+      </div>
+      <div class="menu-item" data-category="main" data-price="60000">
+        <img src="img/bún chả đầy đủ.jpg" alt="Bún Chả Đặc Biệt" class="menu-image">
+        <span>Bún Chả Đầy Đủ - 60.000 VNĐ</span>
+        <input type="number" min="0" value="0" onchange="updateTotal()">
+      </div>
+      <div class="menu-item" data-category="banhmi" data-price="30000">
+        <img src="img/bánh mì thịt.jpg" alt="Bánh Mì Thịt" class="menu-image">
+        <span>Bánh Mì Thịt - 30.000 VNĐ</span>
+        <input type="number" min="0" value="0" onchange="updateTotal()">
+      </div>
+      <div class="menu-item" data-category="banhmi" data-price="35000">
+        <img src="img/bánh mì pate.jpg" alt="Bánh Mì Pate" class="menu-image">
+        <span>Bánh Mì Thêm Pate - 35.000 VNĐ</span>
+        <input type="number" min="0" value="0" onchange="updateTotal()">
+      </div>
+      <div class="menu-item" data-category="banhmi" data-price="35000">
+        <img src="img/bánh mì trứng.jpg" alt="Bánh Mì Trứng" class="menu-image">
+        <span>Bánh Mì Thêm Trứng - 35.000 VNĐ</span>
+        <input type="number" min="0" value="0" onchange="updateTotal()">
+      </div>
+      <div class="menu-item" data-category="banhmi" data-price="40000">
+        <img src="img/bánh mì đặc biệt.jpg" alt="Bánh Mì Đặc Biệt" class="menu-image">
+        <span>Bánh Mì Đầy Đủ - 40.000 VNĐ</span>
+        <input type="number" min="0" value="0" onchange="updateTotal()">
+      </div>
+      <div class="menu-item" data-category="snack" data-price="20000">
+        <img src="img/nem nướng.jpg" alt="Nem Nướng" class="menu-image">
+        <span>Nem Nướng - 20.000 VNĐ</span>
+        <input type="number" min="0" value="0" onchange="updateTotal()">
+      </div>
+      <div class="menu-item" data-category="snack" data-price="20000">
+        <img src="img/chả giò.jpg" alt="Chả Giò" class="menu-image">
+        <span>Chả Giò - 20.000 VNĐ</span>
+        <input type="number" min="0" value="0" onchange="updateTotal()">
+      </div>
+      <div class="menu-item" data-category="snack" data-price="25000">
+        <img src="img/bánh cuốn.jpg" alt="Bánh Cuốn" class="menu-image">
+        <span>Bánh Cuốn - 25.000 VNĐ</span>
+        <input type="number" min="0" value="0" onchange="updateTotal()">
+      </div>
+      <div class="menu-item" data-category="drink" data-price="10000">
+        <img src="img/trà đá.jpg" alt="Trà Đá" class="menu-image">
+        <span>Trà Đá - 10.000 VNĐ</span>
+        <input type="number" min="0" value="0" onchange="updateTotal()">
+      </div>
+      <div class="menu-item" data-category="drink" data-price="20000">
+        <img src="img/nước mía.jpg" alt="Nước Mía" class="menu-image">
+        <span>Nước Mía - 20.000 VNĐ</span>
+        <input type="number" min="0" value="0" onchange="updateTotal()">
+      </div>
+      <div class="menu-item" data-category="drink" data-price="25000">
+        <img src="img/cà phê sữa đá.jpg" alt="Cà Phê Sữa Đá" class="menu-image">
+        <span>Cà Phê Sữa Đá - 25.000 VNĐ</span>
+        <input type="number" min="0" value="0" onchange="updateTotal()">
+      </div>
+      <div class="menu-item" data-category="dessert" data-price="15000">
+        <img src="img/bánh flan.jpg" alt="Bánh Flan" class="menu-image">
+        <span>Bánh Flan - 15.000 VNĐ</span>
+        <input type="number" min="0" value="0" onchange="updateTotal()">
+      </div>
+      <div class="menu-item" data-category="dessert" data-price="20000">
+        <img src="img/chè ba màu.jpg" alt="Chè Ba Màu" class="menu-image">
+        <span>Chè Ba Màu - 20.000 VNĐ</span>
+        <input type="number" min="0" value="0" onchange="updateTotal()">
+      </div>
+
+      <div class="total">
+        Tổng tiền: <span id="total">0 VNĐ</span>
+      </div>
+      <div id="customer-modal" class="modal">
+    <div class="modal-content">
+        <span class="close-button" onclick="closeModal()">&times;</span>
+        <h2>Thông tin khách hàng</h2>
+        <form id="customer-form">
+            <label for="customer-name">Họ và tên:</label>
+            <input type="text" id="customer-name" required>
+            <label for="customer-phone">Số điện thoại:</label>
+            <input type="tel" id="customer-phone" required>
+            <label for="customer-address">Địa chỉ giao hàng:</label>
+            <textarea id="customer-address" required></textarea>
+            <button type="submit">Xác nhận đơn hàng</button>
+        </form>
+    </div>
+</div>
+    </div>
+
+    
+        <button onclick="submitOrder()">Đặt hàng</button>
+    </div>    
+
+    <script src="script.js"></script>
+</body>
+</html>
